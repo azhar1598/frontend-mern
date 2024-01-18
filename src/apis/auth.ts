@@ -1,4 +1,4 @@
-import { apiHandler } from "./apiHandler"
+import { callApi } from "./apiHandler"
 
-export const login = (data:any) =>
-    apiHandler('url', 'POST', data)
+export const loginApi = (payload: any) =>
+    callApi('POST', '/auth/login', payload)
