@@ -8,7 +8,7 @@ const Auth = (WrappedComponent: any) => {
     return function Auth(props: any) {
 
         // You can access the Redux state using useSelector hook
-        const isAuthenticated = useSelector((state: any) => state.isAuthenticated)
+        const isAuthenticated = useSelector((state: any) => state.usersReducer.isAuthenticated);
 
         // If the user is authenticated, render the wrapped component.
         // Otherwise, redirect to a login page or show an authentication message.
