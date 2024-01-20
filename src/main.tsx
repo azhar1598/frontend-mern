@@ -1,13 +1,13 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './App.css'
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
-import App from './App.tsx'
 import './index.css'
 import Layout from './Layout.tsx'
 import Home from './components/Home.tsx'
 import About from './components/About.tsx'
 import Login from './components/Login.tsx'
+import { Provider } from 'react-redux'
+import { store } from './redux/store.ts'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,7 +22,9 @@ const router = createBrowserRouter(
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+  // <React.StrictMode>
+  <Provider store={store}>
     <RouterProvider router={router} />
-  </React.StrictMode>,
+  </Provider>
+
 )

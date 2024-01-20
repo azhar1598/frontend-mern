@@ -1,8 +1,22 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { loginApi } from "../apis/auth"
+import { useDispatch, useSelector } from "react-redux";
+import { loggedinUser } from "../redux/slice/userSlice";
+import { useNavigate } from "react-router-dom";
+
 
 function Login() {
     const [input, setInput] = useState({ userName: '', password: '' })
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
+    const authenticated = useSelector((state: any) => state.isAuthenticated);
+
+    useEffect(() => {
+        if (authenticated)
+            navigate('/dashboard')
+        else
+            navigate('/')
+    }, [authenticated])
 
     const handleChange = (e: any) => {
         setInput({ ...input, [e.target.name]: e.target.value })
@@ -11,7 +25,9 @@ function Login() {
     const onSubmit = async (e: any) => {
         e.preventDefault()
         const res = await loginApi(input)
-        console.log('input=============>', input,import.meta.env.VITE_API_URL)
+        if (res) {
+            dispatch(loggedinUser(res.data));
+        }
     }
 
     return (
