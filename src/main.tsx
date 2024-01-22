@@ -11,10 +11,12 @@ import { store } from './redux/store.ts'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />} >
+    <Route path="/">
       <Route path="" element={<Login />} />
-      <Route path="dashboard" element={<Home />} />
-      <Route path="about" element={<About />} />
+      <Route path="/" element={<Layout />} >
+        <Route path="dashboard" element={<Home />} />
+        <Route path="about" element={<About />} />
+      </Route>
       <Route path='*' element={<div>Not Found</div>} />
     </Route>
   )
